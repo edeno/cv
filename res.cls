@@ -362,7 +362,7 @@
 		       % to give a box of 0pt height and depth
     }%
   }%
-  \addpenalty{-\@secpenalty} % this would be a bad place for a page break
+  \nobreak % never break between a section title and its text (was \addpenalty{-\@secpenalty})
   \vskip-\baselineskip % when the next box is processed, baselineskip glue
 		       % glue will be added (the box has no depth because of
 		       % the \vss; therefore, we don't have to worry about
@@ -420,7 +420,7 @@
   \addpenalty{\@secpenalty}
   \addvspace{\sectionskip}
   \hbox to 0pt{\hss\hbox to \sectionwidth{\sectionfont#1\hss}}
-  \addpenalty{-\@secpenalty} % this would be a bad place for a page break
+  \nobreak % never break between a section title and its text (was \addpenalty{-\@secpenalty})
   \endgroup
   \ifx\\\@tabcr   % see boxed@sectiontitle for explation
     \@startline
