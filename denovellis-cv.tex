@@ -1,0 +1,251 @@
+\documentclass[margin,line,11pt]{res}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{cvbib}
+\addbibresource{publications.bib}
+\addbibresource{abstracts.bib}
+\usepackage{lastpage}
+
+% Footer on every page: name, build month, page X of Y (res.cls sets \pagestyle{empty}).
+\newcommand*{\cvupdated}{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi\space\number\year}
+\makeatletter
+\def\ps@cvfooter{%
+  \let\@oddhead\@empty\let\@evenhead\@empty
+  \def\@oddfoot{\reset@font\footnotesize Eric L. Denovellis --- Curriculum Vitae\hfil Updated \cvupdated\hfil Page \thepage\ of \pageref*{LastPage}}%
+  \let\@evenfoot\@oddfoot}
+\makeatother
+
+\oddsidemargin -.5in
+\evensidemargin -.5in
+\textwidth=6.0in
+\setlength{\emergencystretch}{3em}
+\renewcommand*{\sectionfont}{\normalfont\scshape} % res.cls default is bold
+
+% Role line: title left, date right. If both don't fit on one line, the date
+% moves to the next line, still flush right. No page break right after it.
+\newcommand*{\cvrole}[2]{\emph{#1}\unskip\nobreak\hfill\penalty50\hskip1em\hbox{}\nobreak\hfill\mbox{\textbf{#2}}}
+% Bold subheading set directly on its content (no paragraph gap, no page break).
+\newcommand*{\cvsubhead}[1]{\par\textbf{#1}\par\nobreak\vspace{-\parskip}}
+
+\newenvironment{list1}{
+  \begin{list}{}{%
+      \setlength{\itemsep}{0in}
+      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
+      \setlength{\topsep}{0in} \setlength{\partopsep}{0in} 
+      \setlength{\leftmargin}{0.17in}}}{\end{list}}
+% Bulleted accomplishments under a role line.
+\newenvironment{cvbullets}{%
+  \begin{list}{\textbullet}{%
+      \setlength{\itemsep}{0in}\setlength{\parsep}{0in}%
+      \setlength{\topsep}{0in}\setlength{\partopsep}{0in}%
+      \setlength{\leftmargin}{1.2em}\setlength{\labelwidth}{0.8em}%
+      \setlength{\labelsep}{0.4em}}}{\end{list}}
+
+\hypersetup{%
+  pdftitle={Eric L. Denovellis, Curriculum Vitae},
+  pdfauthor={Eric L. Denovellis},
+  colorlinks=true,
+  urlcolor=blue,
+  linkcolor=blue
+}
+
+
+\begin{document}
+\pagestyle{cvfooter}
+
+\name{Eric L. Denovellis, Ph.D. \vspace*{.1in}}
+
+\begin{resume}
+\section{Contact Information}
+\vspace{.05in}
+\begin{tabular}{@{}p{1.9in}p{3.7in}}
+675 Nelson Rising Ln.              & \textit{Email:}  \href{mailto:eric.denovellis@ucsf.edu}{eric.denovellis@ucsf.edu}\\            
+UCSF	     & \textit{Website:}  \href{https://www.edenovellis.com}{edenovellis.com}\\
+San Francisco, CA 94158  & \textit{GitHub:}  \href{https://github.com/edeno}{github.com/edeno}\\
+USA & \textit{ORCID:}  \href{https://orcid.org/0000-0003-4606-087X}{0000-0003-4606-087X}\\
+& \textit{Google Scholar:}  \href{https://scholar.google.com/citations?user=vuENbkoAAAAJ}{Eric Denovellis}
+\end{tabular}
+
+\section{Research Interests}	
+I develop scalable, interpretable algorithms and tools to decode, categorize, and visualize neural representations—particularly in the hippocampus. My methodological focus is on marked point process switching state space models for characterizing replay dynamics. I work closely with experimental collaborators to ensure these methods are usable on large-scale data, and I build open-source infrastructure to make advanced computational techniques accessible to the broader neuroscience community.
+
+\section{Appointments}
+\textbf{University of California, San Francisco}, San Francisco, California USA
+
+\cvrole{Research Scientist}{September 2019 – Present}\\*
+Supervisor: Loren M. Frank, Department of Physiology
+\begin{cvbullets}
+\item Developing marked point process state space models for interpreting and categorizing hippocampal replay and other neural representations
+\item Leading a team of two computational scientists in building and maintaining lab data processing pipelines
+\item Collaborating with and mentoring trainees on statistical analyses
+\end{cvbullets}
+\vspace{-\parskip}Publications: \emph{Nature}; \emph{Neuron} (4); \emph{eLife} (3, including first and co-first author); \emph{eNeuro}
+
+\textbf{Boston University}, Boston, Massachusetts USA
+
+\cvrole{Postdoctoral Researcher}{September 2016 – August 2019}\\*
+Supervisors: Uri T. Eden and Mark A. Kramer, Department of Mathematics and Statistics
+\begin{cvbullets}
+\item Studied communication between the hippocampus and other brain areas during the reactivation of memory
+\item Methods: state space modeling, point processes, and signal processing
+\end{cvbullets}
+\vspace{-\parskip}Publications: \emph{J. Open Source Softw.}; IEEE Asilomar Conference (both first author)
+
+\cvrole{Graduate Student}{September 2009 – September 2016}
+\begin{cvbullets}
+\item Completed doctoral- and master's-level coursework in mathematics, statistics, computational modeling, and neuroscience
+\item Conducted research on the neural and computational correlates of task switching
+\end{cvbullets}
+\vspace{-\parskip}Publications: \emph{Neuron} (co-first author)
+
+\section{Education}
+\textbf{Boston University}, Boston, Massachusetts USA\\
+\emph{Graduate Program for Neuroscience}
+\begin{list1}
+\item[] Ph.D. in Computational Neuroscience, September 2016
+\item[] Thesis: \href{https://hdl.handle.net/2144/19067}{Task Switching in the Prefrontal Cortex}
+\item[] Advisor: Daniel H. Bullock
+\end{list1}
+
+\textbf{University of California, Santa Barbara}, Santa Barbara, California USA
+\begin{list1}
+\item[] B.S., Mathematics and B.A., Philosophy with High Honors, June 2007
+\item[] Phi Beta Kappa, Lambda Chapter
+\end{list1}
+
+\section{Publications}
+\nocite{*}
+\emph{* Co-first authors}\par\nobreak
+
+\cvsubhead{Peer-reviewed Articles}
+\printbibliography[heading=none,env=cvbibnum,type=article]
+
+\cvsubhead{Preprints}
+\printbibliography[heading=none,env=cvbibnum,type=online]
+
+\cvsubhead{Conference Papers}
+\printbibliography[heading=none,env=cvbibnum,type=inproceedings]
+
+\section{Software Packages}
+
+\href{https://github.com/LorenFrankLab/spyglass}{\textbf{Spyglass}} — Data analysis framework for reproducible neuroscience research. Integrates NWB data standards, DataJoint pipelines, SpikeInterface, and DeepLabCut into a unified platform for multi-lab collaboration. \emph{Co-lead developer.} \textbf{121 stars, 62 forks.} Published in \textit{eLife}: \href{https://doi.org/10.7554/eLife.108089.3}{doi:10.7554/eLife.108089.3}.
+
+\href{https://github.com/Eden-Kramer-Lab/spectral_connectivity}{\textbf{spectral\_connectivity}} — Multitaper spectral estimation and frequency-domain connectivity analysis (coherence, Granger causality, phase-lag index) for electrophysiological data. Supports GPU acceleration. \emph{Lead developer.} \textbf{137 stars, 49 forks.} Published in \textit{Journal of Open Source Software}: \href{https://doi.org/10.21105/joss.04840}{doi:10.21105/joss.04840}.
+
+\href{https://github.com/Eden-Kramer-Lab/replay_trajectory_classification}{\textbf{replay\_trajectory\_classification}} — State-space models for decoding hippocampal replay trajectories and classifying their dynamics using sorted or clusterless spikes. \emph{Lead developer.} \textbf{53 stars, 20 forks.} Published in \textit{eLife}: \href{https://doi.org/10.7554/eLife.64505}{doi:10.7554/eLife.64505}.
+
+\href{https://github.com/LorenFrankLab/non_local_detector}{\textbf{non\_local\_detector}} — Bayesian state-space models in JAX for decoding non-local neural activity (e.g., hippocampal replay) from sorted or clusterless spikes. Includes continuous/fragmented and multi-environment classifiers. Supports GPU acceleration. \emph{Lead developer.}
+
+\href{https://github.com/Eden-Kramer-Lab/ripple_detection}{\textbf{ripple\_detection}} — Detection of hippocampal sharp wave ripples and high synchrony events from LFP and multiunit activity, implementing nine published and lab-standard detectors. \emph{Lead developer.} \textbf{47 stars, 16 forks.}
+
+\href{https://github.com/LorenFrankLab/track_linearization}{\textbf{track\_linearization}} — Hidden Markov model for mapping 2D animal position onto 1D track graphs (mazes, figure-8s, T-mazes). \emph{Lead developer.}
+
+\href{https://github.com/NeurophysVis/SpectraVis}{\textbf{SpectraVis}} — Interactive D3.js web application for exploring task-related functional brain connectivity over time and frequency. \emph{Lead developer.} \textbf{37 stars, 12 forks.}
+
+\href{https://github.com/NeurophysVis/RasterVis}{\textbf{RasterVis}} — Interactive D3.js web application for visualizing spike rasters across neurons, trials, and experimental conditions. \emph{Lead developer.} \textbf{12 stars, 4 forks.} Demo: \href{https://neurophysvis.github.io/RasterVis/public/}{neurophysvis.github.io/RasterVis}.
+
+\section{Talks}
+\cvsubhead{Invited Talks}
+% TODO: add talk title once known
+NeuroAI for the Hippocampus workshop (session: NeuroAI tools for hippocampal data). Spring Hippocampal Symposium, Verona, Italy, May 2027.
+
+% TODO: add talk title once known
+Neuroscience Frontiers, Columbia University, New York, NY, November 2026.
+
+Understanding cognitive representations and dynamics through statistical machine learning. National Centre for Biological Sciences, Bangalore, India, March 2026.
+
+Understanding cognitive representations and dynamics through statistical machine learning. Sainsbury Wellcome Centre/Gatsby Computational Neuroscience Unit, University College London, London, United Kingdom, August 2024.
+
+Understanding cognitive representations and dynamics through statistical machine learning. Computational Neuroscience Center, University of Washington, Seattle, WA, May 2024.
+
+Building Accessible Computational Tools for Modern Systems Neuroscience. Databinge, NeuroImaging and NeuroComputation Centre, University of British Columbia, Vancouver, BC, Canada, February 2024.
+
+Characterizing hippocampal replay using switching point process state space models. Stanford Computational Neuroscience Journal Club, Stanford, CA, August 2020.
+
+\cvsubhead{Contributed Talks}
+Characterizing hippocampal replay using hybrid point process filters. IEEE Asilomar Conference on Signals, Systems, and Computers, Pacific Grove, CA, November 2019.
+
+Using state space models to identify latent temporal dynamics of population spiking activity. The 33rd New England Statistics Symposium, Hartford, CT, May 2019.
+
+\href{https://www.youtube.com/watch?v=J53UVfvzd04}{Better Science Code}. MIT Center for Brains, Minds, and Machines, Cambridge, MA, May 2017.
+
+\href{http://edeno.github.io/iSLC-2015-Presentation/}{Data visualization tools: from classroom to science}. Inter Science of Learning Centers Conference Workshop, San Diego, CA, June 2015.
+
+Synchronous Neural Ensembles for Rules in the Prefrontal Cortex. The 5th Annual Dana and Betty Fisher Retreat of the Picower Institute, South Yarmouth, MA, June 2012.
+
+Neural Dynamics of Cognitive Flexibility. Fall 2011 Picower Plastic Lunch Series, Massachusetts Institute of Technology, Cambridge, MA, October 2011.
+
+\section{Teaching}
+\textbf{National Centre for Biological Sciences}, Bangalore, India
+
+\cvrole{Visiting Instructor}{February – March 2026}\\*
+Computational neuroscience course covered open data use and visualization, spectral analysis of local field potentials, spike-stimulus analysis, neural decoding, and clusterless decoding approaches. Four weeks of instruction (two 1.5-hour lectures per week).
+
+\textbf{University of California, San Francisco}
+
+\cvrole{Lecturer, NS219 Encoder-Decoder Models for Neuroscience}{May 2024}\\*
+Switching state space models to characterize non-local activity in the hippocampus.
+
+\textbf{Boston University}
+
+\cvrole{Instructor, CELEST Summer Program for Undergraduate Interns}{June – August 2015}\\*
+Taught Matlab programming course to underrepresented undergraduate students in STEM.
+
+\cvrole{Teaching Fellow, CAS NE 340}{January – May 2014}\\*
+Introduction to Computational Models of Skilled Decision and Action. Delivered lectures on task switching and Matlab programming; assisted with computer lab sessions.
+
+\cvrole{Teaching Fellow, CAS CN 570}{January – May 2011}\\*
+Neural and Computational Models of Conditioning, Reinforcement, Motivation and Rhythm. Designed final project assignment using a neural network model for visually-guided reaching that integrates motor and visual sensory feedback.
+
+\textbf{University of California, Santa Barbara}
+
+\cvrole{Mathematics Tutor, Campus Learning Assistance Services}{September 2005 – June 2007}\\*
+Tutored students in calculus and linear algebra.
+
+\section{Mentoring \&\\ Supervision}
+\textbf{University of California, San Francisco}
+
+\cvrole{Chris Brozdowski, Computational Scientist}{2023 – Present}\\*
+Spyglass maintainer: core infrastructure, data export, testing; co-author, Spyglass (2026).
+
+\cvrole{Samuel Bray, Computational Scientist}{2023 – Present}\\*
+Spyglass development (MoSeq pipeline, DANDI export, NWB ingestion); machine learning for unclustered spike trains (C3PO); co-author, Spyglass (2026).
+
+\textbf{Boston University}
+
+\cvrole{Mehrad Sarmashghi, Ph.D. Student, Division of Systems Engineering}{2016 – 2019}\\*
+Co-author, Spectral Connectivity (2022).
+
+\textbf{Training}
+
+\cvrole{Inclusive Research Mentor/Manager Training, UCSF}{Fall 2023}
+
+\section{Service \& Outreach}
+\cvsubhead{Reviewing}
+\cvrole{Ad hoc Reviewer}{January 2023 – Present}\\*
+Journals: Science, eLife, PLOS Computational Biology, Neural Computation, Journal of Neurophysiology, Journal of Open Source Software. Conferences: COSYNE, IEEE VIS.
+
+\cvsubhead{Outreach}
+\cvrole{Originating team, Simons SCGB Undergraduate Research Fellowship (SURF)}{June 2020}\\*
+Helped propose the program and its format: funded, mentored research in SCGB laboratories for undergraduates underrepresented in neuroscience.
+
+\cvrole{Co-organizer, CELEST Summer Undergraduate Training Program}{May 2013 – June 2015}\\*
+Organized professional development seminars and led programming tutorials and laboratory tours for undergraduates from underrepresented groups.
+
+\cvsubhead{Institutional Service}
+\cvrole{Co-President, CELEST Student Organization}{May 2011 – June 2016}\\*
+Organized student events and the speaker series; represented students at faculty meetings.
+
+\cvsubhead{Professional Memberships}
+\cvrole{Society for Neuroscience}{May 2011 – Present}
+
+\section{Conference Abstracts}
+\printbibliography[heading=none,env=cvbib,type=misc]
+
+\section{Other\\ Experience}
+\cvrole{Pension Consultant I, Mercer Advisors}{October 2007 – July 2009}
+
+\end{resume}
+\end{document}

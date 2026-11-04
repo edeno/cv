@@ -1,0 +1,13 @@
+# LaTeX build products (PDFs are built by CI; see .github/workflows/build.yml)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.pdf
+.DS_Store

@@ -1,0 +1,127 @@
+\documentclass[margin,line]{res}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage[brief]{cvbib}
+\addbibresource{publications.bib}
+
+\oddsidemargin -.5in
+\evensidemargin -.5in
+\textwidth=6.0in
+\setlength{\emergencystretch}{3em}
+\renewcommand*{\sectionfont}{\normalfont\scshape} % res.cls default is bold
+
+% Role line: title left, date right. If both don't fit on one line, the date
+% moves to the next line, still flush right. No page break right after it.
+\newcommand*{\cvrole}[2]{\emph{#1}\unskip\nobreak\hfill\penalty50\hskip1em\hbox{}\nobreak\hfill\mbox{\textbf{#2}}}
+
+% No page break between a list and the line introducing it.
+\makeatletter
+\newenvironment{list2}{
+  \begin{list}{$\bullet$}{%
+      \@beginparpenalty=\@M
+      \setlength{\itemsep}{0in}
+      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
+      \setlength{\topsep}{0in} \setlength{\partopsep}{0in} 
+      \setlength{\leftmargin}{0.2in}}}{\end{list}}
+\makeatother
+      
+\hypersetup{%
+  pdftitle={Eric L. Denovellis, CV},
+  pdfauthor={Eric L. Denovellis},
+  colorlinks=true,
+  urlcolor=blue,
+  linkcolor=blue
+}
+
+
+\begin{document}
+
+\name{Eric L. Denovellis, Ph.D. \vspace*{.1in}}
+
+\begin{resume}
+\section{Contact Information}
+\vspace{.05in}
+\begin{tabular}{@{}p{1.6in}p{4in}}
+San Francisco, CA & \textit{Email:}  \href{mailto:eric.denovellis@ucsf.edu}{eric.denovellis@ucsf.edu}\\            
+& \textit{Website:}  \href{https://www.edenovellis.com}{edenovellis.com}\\
+& \textit{GitHub:}  \href{https://github.com/edeno}{github.com/edeno}\\
+& \textit{Google Scholar:}  \href{https://scholar.google.com/citations?user=vuENbkoAAAAJ}{Eric Denovellis}
+\end{tabular}
+
+\section{Summary}
+Research scientist with 10+ years developing real-time neural decoding algorithms and scalable data infrastructure for systems neuroscience. Expert in state-space models, point processes, and Bayesian inference for neural signal processing. Builder of open-source tools used by 15+ research labs. Proven ability to translate complex neuroscience problems into production-ready software, with experience in GPU-accelerated computing, real-time systems, and cross-functional collaboration with experimentalists.
+
+\section{Skills} 
+\begin{list2}
+\item \textbf{Programming:} Python, JAX, Matlab, R, JavaScript, SQL
+\item \textbf{ML/Statistics:} State-space models, point processes, Bayesian inference, neural decoding, time series analysis, spectral analysis, Kalman filtering
+\item \textbf{Real-time Systems:} Online clusterless decoding, closed-loop neural feedback, GPU-accelerated signal processing
+\item \textbf{Data Infrastructure:} DataJoint, Spyglass, NWB (Neurodata Without Borders), pipeline development, database design
+\item \textbf{Visualization:} Interactive web-based tools, D3.js, matplotlib, scientific figure design
+\end{list2}
+
+\section{Research Experience}
+\textbf{University of California, San Francisco}
+
+\cvrole{Research Scientist}{September 2019 – Present}\\*
+Frank Lab, Department of Physiology
+\begin{list2}
+\item Developed marked point process state-space models for real-time decoding of hippocampal replay, enabling closed-loop neurofeedback experiments (published in Neuron, 2025)
+\item Co-led development of Spyglass, an open-source data analysis framework now used by 15+ neuroscience labs for reproducible research (121 GitHub stars)
+\item Built GPU-accelerated spectral connectivity package processing terabytes of electrophysiology data (137 GitHub stars, published in JOSS)
+\item Led team of 2 computational scientists; mentored 5+ trainees on statistical methods and software development
+\item Collaborated with hardware engineers on real-time decoding systems achieving millisecond-latency feedback
+\end{list2}
+
+\textbf{Boston University}
+
+\cvrole{Postdoctoral Researcher}{September 2016 – August 2019}\\*
+Mathematics and Statistics Department, Eden and Kramer Labs
+\begin{list2}
+\item Designed novel switching state-space models for characterizing hippocampal replay dynamics across multiple spatial environments
+\item Developed hybrid point process filters for real-time trajectory decoding from population spiking activity
+\item Created interactive web-based visualization tools for multi-dimensional electrophysiology data exploration
+\end{list2}
+
+\cvrole{Graduate Researcher}{September 2009 – September 2016}\\*
+Bullock Lab (BU) and Miller Lab (MIT)
+\begin{list2}
+\item Discovered synchronous oscillatory mechanisms in prefrontal cortex that coordinate context switching (published in Neuron, 2012; 250+ citations)
+\item Applied generalized additive models and point process methods to characterize neural encoding of cognitive variables
+\end{list2}
+
+\section{Software}
+
+\href{https://github.com/LorenFrankLab/spyglass}{\textbf{Spyglass}} (co-first author) — Data analysis framework for reproducible neuroscience research. Integrates NWB, DataJoint, SpikeInterface, and DeepLabCut. \textbf{121 stars, 62 forks.}
+
+\href{https://github.com/Eden-Kramer-Lab/spectral_connectivity}{\textbf{spectral\_connectivity}} — GPU-accelerated multitaper spectral estimation and connectivity analysis. \textbf{137 stars, 49 forks.}
+
+\href{https://github.com/LorenFrankLab/non_local_detector}{\textbf{non\_local\_detector}} — GPU-accelerated Bayesian state-space models in JAX for decoding hippocampal replay from sorted or clusterless spikes.
+
+\href{https://github.com/Eden-Kramer-Lab/replay_trajectory_classification}{\textbf{replay\_trajectory\_classification}} — State-space models for decoding hippocampal replay trajectories and classifying their dynamics from sorted or clusterless spikes. \textbf{53 stars, 20 forks.}
+
+\href{https://github.com/Eden-Kramer-Lab/ripple_detection}{\textbf{ripple\_detection}} — Sharp wave ripple and high synchrony event detection from LFP and multiunit activity. \textbf{47 stars, 16 forks.}
+
+\href{https://github.com/NeurophysVis/SpectraVis}{\textbf{SpectraVis}} — Interactive D3.js application for exploring brain connectivity. \textbf{37 stars, 12 forks.}
+
+\section{Selected Publications}
+Full publication list: \href{https://scholar.google.com/citations?user=vuENbkoAAAAJ}{Google Scholar} \hfill \emph{* Co-first authors}
+\vspace{.1in}
+
+\nocite{lee2026spyglass,chu2025realtimedecoder,coulter2025closedloop,joshi2023stepping,denovellis2021replay,buschman2012synchronous}
+\printbibliography[heading=none,env=cvbib]
+
+\section{Talks \&\\ Teaching}
+\begin{list2}
+\item \textbf{Invited talks:} Spring Hippocampal Symposium, Verona, NeuroAI workshop (2027); Neuroscience Frontiers, Columbia University (2026); NCBS, India (2026); UCL Gatsby/SWC (2024); University of Washington (2024); UBC (2024)
+\item \textbf{Teaching:} Visiting Instructor, NCBS Bangalore (2026), four-week computational neuroscience course; Guest Lecturer, UCSF (2024)
+\end{list2}
+
+\section{Education}
+\textbf{Boston University} — Ph.D., Computational Neuroscience, 2016\\
+\textbf{University of California, Santa Barbara} — B.S., Mathematics; B.A., Philosophy, 2007
+
+\end{resume}
+\end{document}

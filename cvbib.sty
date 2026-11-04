@@ -1,0 +1,162 @@
+% cvbib.sty -- shared publication formatting for the CVs (data in publications.bib).
+%
+% Usage:  \usepackage{cvbib}          full style (academic CV)
+%         \usepackage[brief]{cvbib}   short style (industry CV)
+%         \addbibresource{publications.bib}
+%         \printbibliography[heading=none,env=cvbib]      (unnumbered)
+%         \printbibliography[heading=none,env=cvbibnum]   (numbered)
+%
+% Build:  pdflatex -> biber -> pdflatex   (or: latexmk -pdf)
+%
+% Author lists: the CV owner (\cvbibself) is bolded; names annotated
+% `cofirst` in the .bib get a trailing *. Lists longer than the threshold are
+% cut to "et al." after max(minimum shown, owner's position), so the owner's
+% name is always printed.
+%   full:  more than 10 authors -> show at least the first 10
+%   brief: more than 7 authors  -> stop right after the owner
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cvbib}
+
+\newif\ifcvbib@brief
+\DeclareOption{brief}{\cvbib@brieftrue}
+\ProcessOptions\relax
+
+\RequirePackage[backend=biber, maxnames=999, minnames=999, giveninits=true,
+  uniquename=false, uniquelist=false, doi=true, url=false, isbn=false,
+  eprint=false]{biblatex}
+
+\newcommand*{\cvbibself}[1]{\def\cvbib@selffamily{#1}}
+\cvbibself{Denovellis}
+
+\ifcvbib@brief
+  \def\cvbib@threshold{7}\def\cvbib@minshown{1}
+\else
+  \def\cvbib@threshold{10}\def\cvbib@minshown{10}
+\fi
+
+% Newest first, by full date.
+\DeclareSortingTemplate{cvdate}{
+  \sort[direction=descending]{\field{year}}
+  \sort[direction=descending]{\field[padside=left,padwidth=2,padchar=0]{month}}
+  \sort[direction=descending]{\field[padside=left,padwidth=2,padchar=0]{day}}
+  \sort{\field{title}}
+}
+\ExecuteBibliographyOptions{sorting=cvdate}
+% Entries are unnumbered, so splitting by type needs no defernumbers.
+% (The command and its warning only exist in newer biblatex, e.g. not 3.14.)
+\ifdefined\BiblatexSplitbibDefernumbersWarningOff
+  \BiblatexSplitbibDefernumbersWarningOff
+\fi
+
+% --- Names: "Family, I.I." -------------------------------------------------
+\renewcommand*{\bibinitdelim}{}
+% Flags are global: biblatex formats each name inside its own group.
+\AtEveryBibitem{\gdef\cvbib@done{0}\gdef\cvbib@seenself{0}}
+
+\newcommand*{\cvbib@name}{%
+  \namepartfamily\addcomma\space\namepartgiveni
+  \ifitemannotation{cofirst}{*}{}}
+
+\DeclareNameFormat{cv}{%
+  \ifnumequal{\cvbib@done}{1}{}{%
+    \nameparts{#1}%
+    \ifnumgreater{\value{listcount}}{1}
+      {\ifnumequal{\value{listcount}}{\value{listtotal}}
+         {\addcomma\space\bibstring{and}\space}
+         {\addcomma\space}}
+      {}%
+    \ifdefstrequal{\namepartfamily}{\cvbib@selffamily}
+      {\gdef\cvbib@seenself{1}\mkbibbold{\cvbib@name}}
+      {\cvbib@name}%
+    \ifboolexpr{
+      test {\ifnumgreater{\value{listtotal}}{\cvbib@threshold}}
+      and test {\ifnumless{\value{listcount}}{\value{listtotal}}}
+      and not test {\ifnumless{\value{listcount}}{\cvbib@minshown}}
+      and test {\ifnumequal{\cvbib@seenself}{1}}}
+      {\addcomma\space\bibstring{andothers}\gdef\cvbib@done{1}}
+      {}}}
+
+% --- Fields ----------------------------------------------------------------
+\DeclareFieldFormat*{title}{#1}
+\DeclareFieldFormat{journaltitle}{#1}
+\DeclareFieldFormat{booktitle}{#1}
+\DeclareFieldFormat*{volume}{#1}
+\DeclareFieldFormat*{number}{#1}
+\DeclareFieldFormat*{pages}{#1}
+\DeclareFieldFormat*{eid}{#1}
+% \nolinkurl lets long DOIs break at / and . ; \urlstyle{same} keeps the text font.
+\DeclareFieldFormat{doi}{\href{https://doi.org/#1}{doi:\nolinkurl{#1}}}
+\urlstyle{same}
+
+\renewcommand*{\newunitpunct}{\addperiod\space}
+\renewcommand*{\finentrypunct}{}
+
+% "\textit{Venue}, vol(num), pages" (full) or "\textit{Venue}" (brief)
+\newbibmacro*{cv:venue}[1]{%
+  \mkbibemph{\printfield{#1}}%
+  \ifcvbib@brief\else
+    \iffieldundef{volume}{}{%
+      \addcomma\space\printfield{volume}%
+      \iffieldundef{number}{}{\printtext[parens]{\printfield{number}}}}%
+    \iffieldundef{pages}{}{\addcomma\space\printfield{pages}}%
+    \iffieldundef{eid}{}{\addcomma\space\printfield{eid}}%
+  \fi}
+
+\newbibmacro*{cv:begin}{%
+  \printnames[cv]{author}%
+  \setunit{\addspace}\printtext[parens]{\printfield{year}}%
+  \newunit\printfield{title}%
+  \newunit}
+
+\newbibmacro*{cv:end}{%
+  \newunit\printfield{doi}%
+  \finentry}
+
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{cv:begin}\usebibmacro{cv:venue}{journaltitle}\usebibmacro{cv:end}}
+\DeclareBibliographyDriver{inproceedings}{%
+  \usebibmacro{cv:begin}\usebibmacro{cv:venue}{booktitle}\usebibmacro{cv:end}}
+\DeclareBibliographyDriver{online}{%
+  \usebibmacro{cv:begin}%
+  \iflistundef{organization}{\printtext{Preprint}}{\printlist{organization}}%
+  \usebibmacro{cv:end}}
+
+% Conference abstracts (@misc): "Meeting, City. Program No. X. Award. Online"
+\DeclareFieldFormat{howpublished}{#1}
+\DeclareFieldFormat{note}{#1}
+\DeclareFieldFormat{addendum}{#1}
+\DeclareFieldFormat{url}{\href{#1}{Online}}
+\DeclareBibliographyDriver{misc}{%
+  \usebibmacro{cv:begin}%
+  \printfield{howpublished}%
+  \setunit{\addcomma\space}\printlist{location}%
+  \newunit\printfield{note}%
+  \newunit\printfield{addendum}%
+  \newunit\printfield{url}%
+  \finentry}
+
+% Entries as plain paragraphs, matching the rest of the CV.
+\defbibenvironment{cvbib}{}{}{\endgraf}
+
+% Numbered entries (1., 2., ... in printed order, restarting in each
+% \printbibliography) with hanging labels; a blank line between entries.
+% Like a paragraph, the list starts after a \parskip gap (so a heading
+% that removes that gap sits directly on it), and never right after a page break.
+\newcounter{cvbibitem}
+\defbibenvironment{cvbibnum}
+  {\endgraf\vspace{\parskip}%
+   \list{\arabic{cvbibitem}.}{%
+     \usecounter{cvbibitem}%
+     \@beginparpenalty=\@M
+     \setlength{\leftmargin}{2em}%
+     \setlength{\labelwidth}{1.6em}%
+     \setlength{\labelsep}{0.4em}%
+     \setlength{\itemindent}{0pt}%
+     \setlength{\topsep}{0pt}%
+     \setlength{\partopsep}{0pt}%
+     \setlength{\parsep}{0pt}%
+     \setlength{\itemsep}{\baselineskip}}}% (res.cls zeroes \parskip in lists)
+  {\endlist}
+  {\item}
+
+\endinput
