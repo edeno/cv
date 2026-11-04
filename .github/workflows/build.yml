@@ -34,3 +34,33 @@ jobs:
           path: |
             denovellis-cv.pdf
             denovellis-cv-neurotech.pdf
+
+  # Push the academic CV to the website. WEBSITE_DEPLOY_KEY is the private
+  # half of a write deploy key on edeno/edeno; a push made with it (unlike
+  # GITHUB_TOKEN) triggers the website's deploy workflow.
+  sync-website:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: cv-pdfs
+          path: pdfs
+
+      - uses: actions/checkout@v4
+        with:
+          repository: edeno/edeno
+          ssh-key: ${{ secrets.WEBSITE_DEPLOY_KEY }}
+          path: website
+
+      - name: Commit and push the CV
+        working-directory: website
+        run: |
+          cp ../pdfs/denovellis-cv.pdf _static/eric_denovellis_CV.pdf
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _static/eric_denovellis_CV.pdf
+          if git diff --cached --quiet; then echo "CV unchanged"; exit 0; fi
+          git commit -m "Update CV from edeno/cv@${GITHUB_SHA::7}"
+          git push

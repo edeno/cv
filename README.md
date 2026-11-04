@@ -24,3 +24,9 @@ On Overleaf, upload all six source files together (`*.tex`, `res.cls`,
 
 `.github/workflows/build.yml` builds both PDFs on every push and pull request;
 download them from the run's `cv-pdfs` artifact.
+
+Every push to `main` also copies the academic CV to the website repo
+(`edeno/edeno`, `_static/eric_denovellis_CV.pdf`), which redeploys
+www.edenovellis.com. So **pushing to `main` publishes the CV**; use a branch
+for drafts. The push uses a write deploy key on `edeno/edeno` whose private
+half is this repo's `WEBSITE_DEPLOY_KEY` secret.
