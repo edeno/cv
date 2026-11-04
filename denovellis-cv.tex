@@ -29,7 +29,8 @@
 % Bold subheading set directly on its content (no paragraph gap, no page break).
 \newcommand*{\cvsubhead}[1]{\par\textbf{#1}\par\nobreak\vspace{-\parskip}}
 
-\newenvironment{list1}{
+% Unbreakable list (Education entries stay on one page).
+\newenvironment{list1}{\samepage
   \begin{list}{}{%
       \setlength{\itemsep}{0in}
       \setlength{\parsep}{0in} \setlength{\parskip}{0in}
@@ -101,12 +102,13 @@ Supervisors: Uri T. Eden and Mark A. Kramer, Department of Mathematics and Stati
 \vspace{-\parskip}Publications: \emph{Neuron} (co-first author)
 
 \section{Education}
-\textbf{Boston University}, Boston, Massachusetts USA\\
+\textbf{Boston University}, Boston, Massachusetts USA\\*
 \emph{Graduate Program for Neuroscience}
 \begin{list1}
 \item[] Ph.D. in Computational Neuroscience, September 2016
 \item[] Thesis: \href{https://hdl.handle.net/2144/19067}{Task Switching in the Prefrontal Cortex}
 \item[] Advisor: Daniel H. Bullock
+\item[] Graduate coursework in statistics and signal processing: Generalized Linear Models; Multivariate Statistical Analysis; Time Series and Forecasting; Digital Signal Processing; Advanced Modeling and Data Analysis in Neuroscience
 \end{list1}
 
 \textbf{University of California, Santa Barbara}, Santa Barbara, California USA
