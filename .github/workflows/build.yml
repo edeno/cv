@@ -1,0 +1,36 @@
+name: build
+
+# Build both CVs on every push and PR. Pushes to main also copy the
+# academic CV to the website repo (edeno/edeno), whose own workflow then
+# redeploys www.edenovellis.com.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: xu-cheng/latex-action@v3
+        with:
+          root_file: |
+            denovellis-cv.tex
+            denovellis-cv-neurotech.tex
+
+      - name: Industry CV must stay at 2 pages
+        # TeX wraps log lines, so join them before matching.
+        run: |
+          pages=$(tr -d '\n' < denovellis-cv-neurotech.log | grep -o 'denovellis-cv-neurotech.pdf ([0-9]* pages' | grep -o '[0-9]*')
+          echo "Industry CV: $pages pages"
+          test "$pages" = 2
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdfs
+          path: |
+            denovellis-cv.pdf
+            denovellis-cv-neurotech.pdf
