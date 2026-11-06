@@ -16,11 +16,12 @@
 % moves to the next line, still flush right. No page break right after it.
 \newcommand*{\cvrole}[2]{\emph{#1}\unskip\nobreak\hfill\penalty50\hskip1em\hbox{}\nobreak\hfill\mbox{\textbf{#2}}}
 
-% No page break between a list and the line introducing it.
+% No page break inside a list, or between it and the line introducing it,
+% so a role and its bullets stay on one page.
 \makeatletter
 \newenvironment{list2}{
   \begin{list}{$\bullet$}{%
-      \@beginparpenalty=\@M
+      \@beginparpenalty=\@M \@itempenalty=\@M
       \setlength{\itemsep}{0in}
       \setlength{\parsep}{0in} \setlength{\parskip}{0in}
       \setlength{\topsep}{0in} \setlength{\partopsep}{0in} 
@@ -51,7 +52,7 @@ San Francisco, CA & \textit{Email:}  \href{mailto:eric.denovellis@ucsf.edu}{eric
 \end{tabular}
 
 \section{Summary}
-Research scientist with 10+ years developing real-time neural decoding algorithms and scalable data infrastructure for systems neuroscience. Expert in state-space models, point processes, and Bayesian inference for neural signal processing. Builder of open-source tools used by 15+ research labs. Proven ability to translate complex neuroscience problems into production-ready software, with experience in GPU-accelerated computing, real-time systems, and cross-functional collaboration with experimentalists.
+Research scientist with 10+ years developing real-time neural decoding algorithms and scalable data infrastructure for systems neuroscience. Expert in state-space models, point processes, and Bayesian inference for neural signal processing. Builder of open-source tools used by 15+ research labs.
 
 \section{Skills} 
 \begin{list2}
@@ -68,11 +69,12 @@ Research scientist with 10+ years developing real-time neural decoding algorithm
 \cvrole{Research Scientist}{September 2019 – Present}\\*
 Frank Lab, Department of Physiology
 \begin{list2}
-\item Developed marked point process state-space models for real-time decoding of hippocampal replay, enabling closed-loop neurofeedback experiments (published in Neuron, 2025)
-\item Co-led development of Spyglass, an open-source data analysis framework now used by 15+ neuroscience labs for reproducible research (121 GitHub stars)
-\item Built GPU-accelerated spectral connectivity package processing terabytes of electrophysiology data (137 GitHub stars, published in JOSS)
+\item Developed marked point process state-space models for real-time decoding of hippocampal replay, enabling closed-loop neurofeedback experiments (Neuron, 2025)
+\item Extended these models to decode replay across multiple spatial environments (COSYNE, 2023)
+\item Co-led development of Spyglass, now used by 15+ neuroscience labs (eLife, 2026)
+\item Added GPU acceleration to spectral\_connectivity for terabyte-scale data (JOSS, 2022)
 \item Led team of 2 computational scientists; mentored 5+ trainees on statistical methods and software development
-\item Collaborated with hardware engineers on real-time decoding systems achieving millisecond-latency feedback
+\item Collaborated with hardware engineers on a real-time clusterless decoder with 6 ms temporal resolution and $<$50 ms median computational latency on 32+ tetrodes (eNeuro, 2025)
 \end{list2}
 
 \textbf{Boston University}
@@ -80,15 +82,16 @@ Frank Lab, Department of Physiology
 \cvrole{Postdoctoral Researcher}{September 2016 – August 2019}\\*
 Mathematics and Statistics Department, Eden and Kramer Labs
 \begin{list2}
-\item Designed novel switching state-space models for characterizing hippocampal replay dynamics across multiple spatial environments
+\item Designed novel switching state-space models for characterizing hippocampal replay dynamics
 \item Developed hybrid point process filters for real-time trajectory decoding from population spiking activity
+\item Created spectral\_connectivity, an open-source package for spectral and connectivity analysis
 \item Created interactive web-based visualization tools for multi-dimensional electrophysiology data exploration
 \end{list2}
 
 \cvrole{Graduate Researcher}{September 2009 – September 2016}\\*
 Bullock Lab (BU) and Miller Lab (MIT)
 \begin{list2}
-\item Discovered synchronous oscillatory mechanisms in prefrontal cortex that coordinate context switching (published in Neuron, 2012; 250+ citations)
+\item Discovered synchronous oscillatory mechanisms in prefrontal cortex that coordinate context switching (Neuron, 2012; 250+ citations)
 \item Applied generalized additive models and point process methods to characterize neural encoding of cognitive variables
 \end{list2}
 
@@ -110,12 +113,12 @@ Bullock Lab (BU) and Miller Lab (MIT)
 Full publication list: \href{https://scholar.google.com/citations?user=vuENbkoAAAAJ}{Google Scholar} \hfill \emph{* Co-first authors}
 \vspace{.1in}
 
-\nocite{lee2026spyglass,chu2025realtimedecoder,coulter2025closedloop,joshi2023stepping,denovellis2021replay,buschman2012synchronous}
+\nocite{lee2026spyglass,chu2025realtimedecoder,coulter2025closedloop,joshi2023stepping,denovellis2022spectral,denovellis2021replay,buschman2012synchronous}
 \printbibliography[heading=none,env=cvbib]
 
 \section{Talks \&\\ Teaching}
 \begin{list2}
-\item \textbf{Invited talks:} Spring Hippocampal Symposium, Verona, NeuroAI workshop (2027); Neuroscience Frontiers, Columbia University (2026); NCBS, India (2026); UCL Gatsby/SWC (2024); University of Washington (2024); UBC (2024)
+\item \textbf{Invited talks:} Spring Hippocampal Symposium, Verona, NeuroAI workshop (upcoming, 2027); Neuroscience Frontiers, Columbia University (upcoming, 2026); NCBS, India (2026); UCL Gatsby/SWC (2024); University of Washington (2024); UBC (2024)
 \item \textbf{Teaching:} Visiting Instructor, NCBS Bangalore (2026), four-week computational neuroscience course; Guest Lecturer, UCSF (2024)
 \end{list2}
 

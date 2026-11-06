@@ -782,6 +782,7 @@
 \marginparwidth 0pt
 \parindent 0pt
 \parskip \baselineskip
+\interlinepenalty \@M % never break a page inside a paragraph
 \setcounter{secnumdepth}{0}
 \def\@listI{\leftmargin\leftmargini
 \topsep 0pt 

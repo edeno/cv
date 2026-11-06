@@ -36,13 +36,18 @@
       \setlength{\parsep}{0in} \setlength{\parskip}{0in}
       \setlength{\topsep}{0in} \setlength{\partopsep}{0in} 
       \setlength{\leftmargin}{0.17in}}}{\end{list}}
-% Bulleted accomplishments under a role line.
+% Bulleted accomplishments under a role line. No page break inside the list,
+% before it, or after it, so a role stays on one page with its bullets and
+% the "Publications:" line that follows them.
+\makeatletter
 \newenvironment{cvbullets}{%
   \begin{list}{\textbullet}{%
+      \@beginparpenalty=\@M \@itempenalty=\@M \@endparpenalty=\@M
       \setlength{\itemsep}{0in}\setlength{\parsep}{0in}%
       \setlength{\topsep}{0in}\setlength{\partopsep}{0in}%
       \setlength{\leftmargin}{1.2em}\setlength{\labelwidth}{0.8em}%
       \setlength{\labelsep}{0.4em}}}{\end{list}}
+\makeatother
 
 \hypersetup{%
   pdftitle={Eric L. Denovellis, Curriculum Vitae},
@@ -78,9 +83,10 @@ I develop scalable, interpretable algorithms and tools to decode, categorize, an
 \cvrole{Research Scientist}{September 2019 – Present}\\*
 Supervisor: Loren M. Frank, Department of Physiology
 \begin{cvbullets}
-\item Developing marked point process state space models for interpreting and categorizing hippocampal replay and other neural representations
-\item Leading a team of two computational scientists in building and maintaining lab data processing pipelines
-\item Collaborating with and mentoring trainees on statistical analyses
+\item Developed marked point process switching state space models that decode hippocampal replay from clusterless spikes, classify its dynamics, and distinguish among environments
+\item Adapted these models for real-time decoding with collaborators, enabling closed-loop neurofeedback on hippocampal spatial representations
+\item Co-led development of Spyglass, an open-source framework for reproducible, shareable analysis used by 15+ labs; lead the two computational scientists who maintain it
+\item Collaborate with and mentor trainees on statistical analyses
 \end{cvbullets}
 \vspace{-\parskip}Publications: \emph{Nature}; \emph{Neuron} (4); \emph{eLife} (3, including first and co-first author); \emph{eNeuro}
 
@@ -90,14 +96,15 @@ Supervisor: Loren M. Frank, Department of Physiology
 Supervisors: Uri T. Eden and Mark A. Kramer, Department of Mathematics and Statistics
 \begin{cvbullets}
 \item Studied communication between the hippocampus and other brain areas during the reactivation of memory
-\item Methods: state space modeling, point processes, and signal processing
+\item Developed hybrid point process state space models for characterizing hippocampal replay dynamics, work continued at UCSF
+\item Created spectral\_connectivity, a package for multitaper spectral estimation and frequency-domain connectivity analysis; GPU support and publication followed at UCSF (2022)
 \end{cvbullets}
 \vspace{-\parskip}Publications: \emph{J. Open Source Softw.}; IEEE Asilomar Conference (both first author)
 
 \cvrole{Graduate Student}{September 2009 – September 2016}
 \begin{cvbullets}
-\item Completed doctoral- and master's-level coursework in mathematics, statistics, computational modeling, and neuroscience
-\item Conducted research on the neural and computational correlates of task switching
+\item Identified synchronous oscillatory neural ensembles in prefrontal cortex that support switching between task rules
+\item Applied generalized additive models and point process methods to characterize neural encoding of cognitive variables
 \end{cvbullets}
 \vspace{-\parskip}Publications: \emph{Neuron} (co-first author)
 
@@ -155,10 +162,10 @@ Supervisors: Uri T. Eden and Mark A. Kramer, Department of Mathematics and Stati
 \section{Talks}
 \cvsubhead{Invited Talks}
 % TODO: add talk title once known
-NeuroAI for the Hippocampus workshop (session: NeuroAI tools for hippocampal data). Spring Hippocampal Symposium, Verona, Italy, May 2027.
+NeuroAI for the Hippocampus workshop (session: NeuroAI tools for hippocampal data). Spring Hippocampal Symposium, Verona, Italy, May 2027 (upcoming).
 
 % TODO: add talk title once known
-Neuroscience Frontiers, Columbia University, New York, NY, November 2026.
+Neuroscience Frontiers, Columbia University, New York, NY, November 2026 (upcoming).
 
 Understanding cognitive representations and dynamics through statistical machine learning. National Centre for Biological Sciences, Bangalore, India, March 2026.
 

@@ -42,6 +42,8 @@
   \sort{\field{title}}
 }
 \ExecuteBibliographyOptions{sorting=cvdate}
+% Never split an entry across pages (biblatex's \bibsetup only discourages it).
+\appto\bibsetup{\interlinepenalty=\@M}
 % Entries are unnumbered, so splitting by type needs no defernumbers.
 % (The command and its warning only exist in newer biblatex, e.g. not 3.14.)
 \ifdefined\BiblatexSplitbibDefernumbersWarningOff
