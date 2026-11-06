@@ -122,6 +122,10 @@
   \usebibmacro{cv:begin}%
   \iflistundef{organization}{\printtext{Preprint}}{\printlist{organization}}%
   \usebibmacro{cv:end}}
+% Manuscripts not yet posted (@unpublished): "Title. In preparation",
+% from pubstate = inpreparation | submitted | ...
+\DeclareBibliographyDriver{unpublished}{%
+  \usebibmacro{cv:begin}\printfield{pubstate}\finentry}
 
 % Conference abstracts (@misc): "Meeting, City. Program No. X. Award. Online"
 \DeclareFieldFormat{howpublished}{#1}

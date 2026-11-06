@@ -5,7 +5,8 @@ Two CVs built from shared sources:
 - `denovellis-cv.tex`: academic CV (full publication list, talks, abstracts).
 - `denovellis-cv-neurotech.tex`: industry CV, must stay at 2 pages (CI checks this).
 
-Publications live in `publications.bib` (papers, preprints) and `abstracts.bib`
+Publications live in `publications.bib` (papers, preprints, manuscripts in
+preparation) and `abstracts.bib`
 (conference abstracts, academic CV only), formatted by `cvbib.sty`.
 `res.cls` is a locally modified copy of the resume class.
 

@@ -28,6 +28,8 @@
 \newcommand*{\cvrole}[2]{\emph{#1}\unskip\nobreak\hfill\penalty50\hskip1em\hbox{}\nobreak\hfill\mbox{\textbf{#2}}}
 % Bold subheading set directly on its content (no paragraph gap, no page break).
 \newcommand*{\cvsubhead}[1]{\par\textbf{#1}\par\nobreak\vspace{-\parskip}}
+% Institution line above a group of roles: no page break between it and the first role.
+\newcommand*{\cvplace}[1]{\par#1\par\nobreak}
 
 % Unbreakable list (Education entries stay on one page).
 \newenvironment{list1}{\samepage
@@ -78,7 +80,7 @@ USA & \textit{ORCID:}  \href{https://orcid.org/0000-0003-4606-087X}{0000-0003-46
 I develop scalable, interpretable algorithms and tools to decode, categorize, and visualize neural representations—particularly in the hippocampus. My methodological focus is on marked point process switching state space models for characterizing replay dynamics. I work closely with experimental collaborators to ensure these methods are usable on large-scale data, and I build open-source infrastructure to make advanced computational techniques accessible to the broader neuroscience community.
 
 \section{Appointments}
-\textbf{University of California, San Francisco}, San Francisco, California USA
+\cvplace{\textbf{University of California, San Francisco}, San Francisco, California USA}
 
 \cvrole{Research Scientist}{September 2019 – Present}\\*
 Supervisor: Loren M. Frank, Department of Physiology
@@ -90,7 +92,7 @@ Supervisor: Loren M. Frank, Department of Physiology
 \end{cvbullets}
 \vspace{-\parskip}Publications: \emph{Nature}; \emph{Neuron} (4); \emph{eLife} (3, including first and co-first author); \emph{eNeuro}
 
-\textbf{Boston University}, Boston, Massachusetts USA
+\cvplace{\textbf{Boston University}, Boston, Massachusetts USA}
 
 \cvrole{Postdoctoral Researcher}{September 2016 – August 2019}\\*
 Supervisors: Uri T. Eden and Mark A. Kramer, Department of Mathematics and Statistics
@@ -133,6 +135,9 @@ Supervisors: Uri T. Eden and Mark A. Kramer, Department of Mathematics and Stati
 
 \cvsubhead{Preprints}
 \printbibliography[heading=none,env=cvbibnum,type=online]
+
+\cvsubhead{Manuscripts in Preparation}
+\printbibliography[heading=none,env=cvbibnum,type=unpublished]
 
 \cvsubhead{Conference Papers}
 \printbibliography[heading=none,env=cvbibnum,type=inproceedings]
@@ -194,17 +199,17 @@ Synchronous Neural Ensembles for Rules in the Prefrontal Cortex. The 5th Annual 
 Neural Dynamics of Cognitive Flexibility. Fall 2011 Picower Plastic Lunch Series, Massachusetts Institute of Technology, Cambridge, MA, October 2011.
 
 \section{Teaching}
-\textbf{National Centre for Biological Sciences}, Bangalore, India
+\cvplace{\textbf{National Centre for Biological Sciences}, Bangalore, India}
 
 \cvrole{Visiting Instructor}{February – March 2026}\\*
 Designed and taught a four-week computational neuroscience course for about 10 graduate students (two 1.5-hour lectures per week), with Jupyter notebook assignments and a final project. Topics: open data use and visualization, spectral analysis of local field potentials, spike-stimulus analysis, neural decoding, and clusterless decoding.
 
-\textbf{University of California, San Francisco}
+\cvplace{\textbf{University of California, San Francisco}}
 
 \cvrole{Guest Lecturer, NS219 Encoder-Decoder Models for Neuroscience}{May 2024}\\*
 Switching state space models to characterize non-local activity in the hippocampus.
 
-\textbf{Boston University}
+\cvplace{\textbf{Boston University}}
 
 \cvrole{Instructor, CELEST Summer Program for Undergraduate Interns}{June – August 2015}\\*
 Taught Matlab programming course to underrepresented undergraduate students in STEM.
@@ -215,13 +220,13 @@ Introduction to Computational Models of Skilled Decision and Action. Delivered l
 \cvrole{Teaching Fellow, CAS CN 570}{January – May 2011}\\*
 Neural and Computational Models of Conditioning, Reinforcement, Motivation and Rhythm. Designed final project assignment using a neural network model for visually-guided reaching that integrates motor and visual sensory feedback.
 
-\textbf{University of California, Santa Barbara}
+\cvplace{\textbf{University of California, Santa Barbara}}
 
 \cvrole{Mathematics Tutor, Campus Learning Assistance Services}{September 2005 – June 2007}\\*
 Tutored students in calculus and linear algebra.
 
 \section{Mentoring \&\\ Supervision}
-\textbf{University of California, San Francisco}
+\cvplace{\textbf{University of California, San Francisco}}
 
 \cvrole{Chris Brozdowski, Computational Scientist}{2023 – Present}\\*
 Spyglass maintainer: core infrastructure, data export, testing; co-author, Spyglass (2026).
@@ -229,12 +234,12 @@ Spyglass maintainer: core infrastructure, data export, testing; co-author, Spygl
 \cvrole{Samuel Bray, Computational Scientist}{2023 – Present}\\*
 Spyglass development (MoSeq pipeline, DANDI export, NWB ingestion); machine learning for unclustered spike trains (C3PO); co-author, Spyglass (2026).
 
-\textbf{Boston University}
+\cvplace{\textbf{Boston University}}
 
 \cvrole{Mehrad Sarmashghi, Ph.D. Student, Division of Systems Engineering}{2016 – 2019}\\*
 Co-author, Spectral Connectivity (2022).
 
-\textbf{Training}
+\cvplace{\textbf{Training}}
 
 \cvrole{Inclusive Research Mentor/Manager Training, UCSF}{Fall 2023}
 
