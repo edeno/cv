@@ -121,6 +121,7 @@
 \DeclareBibliographyDriver{online}{%
   \usebibmacro{cv:begin}%
   \iflistundef{organization}{\printtext{Preprint}}{\printlist{organization}}%
+  \newunit\printfield{pubstate}%
   \usebibmacro{cv:end}}
 % Manuscripts not yet posted (@unpublished): "Title. In preparation",
 % from pubstate = inpreparation | submitted | ...
